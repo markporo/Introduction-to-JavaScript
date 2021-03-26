@@ -364,10 +364,42 @@ Using the vowelCounter function below do the following:
   HINT - try looking up the .includes() method
 */
 
+let thisWord = "alleluia";
 
-function vowelCounter(/*add your code here*/) {
-  /*add your code here*/
+let vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+let vowelsUsed = [];
+let numOfVowels = [];
+
+
+function vowelCounter(wordWithVowels) {
+  // iterate through vowels and see if the argument passed includes any matching vowels
+  for (let i = 0; i < vowels.length; i++) {
+    if (wordWithVowels.includes(vowels[i]))
+      // if vowels are found push them to vowelsUsed array
+      vowelsUsed.push(vowels[i]);
+  }
+
+  numOfVowels = vowelsUsed.length;
+
+  // create return message for user to see
+  let returnMessage = "There is/are " + numOfVowels + " different vowel(s) in this word.  This/These is/are the vowel(s) used in that word " + vowelsUsed + ".";
+
+  // clear out the array holding vowels of current word for the next word to be used
+  clearArray(numOfVowels);
+  clearArray(vowelsUsed);
+
+  return returnMessage;
 }
+
+// outside function used to attempt to clear out the numOfVowels array holding vowels
+function clearArray(array) {
+  while (array.length) {
+    array.pop();
+  }
+}
+
+// initiate vowelCounter function passing the thisWord variable
+vowelCounter(thisWord);
 
 
 
