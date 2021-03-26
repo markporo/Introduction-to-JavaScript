@@ -186,10 +186,75 @@ Use the game function below to do the following:
   
   HINT: Remember that the order in which we pass in our arguments matters when it comes to parameters
 */
+const paper = "paper";
+const scissors = "scissors"
+const rock = "rock";
+let result = null;
+
+let computerChoice = Math.ceil(Math.random() * 3);
+let userChoice = 2;
 
 function game(user, computer) {
-  /*add your code here*/
+
+  // User's Choice
+  switch (user) {
+    case 1:
+      user = paper;
+      break;
+    case 2:
+      user = scissors;
+      break;
+    case 3:
+      user = rock;
+      break;
+  }
+
+  // Computer's Choice
+  switch (computer) {
+    case 1:
+      computer = paper;
+      break;
+    case 2:
+      computer = scissors;
+      break;
+    case 3:
+      computer = rock;
+      break;
+  }
+
+  // The Face Off and result
+  switch (true) {
+    case user === computer:
+      result = "It's a tie! " + user + " is the same as " + computer + "!";
+      break;
+    case user === scissors && computer === paper:
+      result = "You win! " + scissors + " beats " + paper + "!";
+      break;
+    case computer === scissors && user === paper:
+      result = "You lose. " + scissors + " beats " + paper + "!";
+      break;
+    case user === rock && computer === paper:
+      result = "You lose. " + paper + " beats " + rock + "!";
+      break;
+    case computer === rock && user === paper:
+      result = "You win! " + paper + " beats " + rock + "!";
+      break;
+    case computer === rock && user === scissors:
+      result = `You lose. ${rock} beats ${scissors}.`;
+      break;
+    case user === rock && computer === scissors:
+      result = `You win! ${rock} beats ${scissors}!`;
+      break;
+  }
+
+  // reassigning choices for next game
+  computerChoice = Math.ceil(Math.random() * 3);
+  userChoice = Math.ceil(Math.random() * 3);
+
+  return result;
 }
+
+game(userChoice, computerChoice);
 
 
 
@@ -204,9 +269,14 @@ Using the miles function below do the following:
   3. Return the number of miles
 */
 
-function miles(/*add your code here*/) {
-  /*add your code here*/
+const myDistanceFromLAInKilometers = 3773.75;
+
+function miles(numOfKilometers) {
+  let numOfMiles = numOfKilometers / 1.609;
+  return numOfMiles;
 }
+
+miles(myDistanceFromLAInKilometers);
 
 
 
@@ -234,9 +304,15 @@ Using the annoyingSong function below do the following:
       "{number} bottles of soda on the wall, {number} bottles of soda, take one down pass it around {number left over} bottles of soda on the wall"
 */
 
-function annoyingSong(/*add your code here*/) {
-  /*add your code here*/
+let bottles = 8;
+
+function annoyingSong(numOfSoda) {
+  while (numOfSoda > 0) {
+    console.log(`${numOfSoda} bottles of soda on the wall, ${numOfSoda} bottles of soda, take one down pass it around ${--numOfSoda} bottles of soda on the wall`);
+  }
+  return "and now we open another case!!";
 }
+annoyingSong(bottles);
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -253,11 +329,27 @@ Using the grade function below do the following:
    60-69 should return 'you got a D'
    below should return 'you got an F'
 */
+let score = 98;
 
-function grade(/*Your Code here */) {
-  /*Your Code here */
+let gradeResult;
+
+function grade(grade) {
+  if (grade >= 90) {
+    gradeResult = "You got an A!  Nice job!";
+  } else if (grade >= 80 && grade < 90) {
+    gradeResult = "You got a B!";
+  } else if (grade >= 70 && grade < 80) {
+    gradeResult = "You got a C!  Okay, average is acceptable.";
+  } else if (grade >= 60 && grade < 70) {
+    gradeResult = "You got a D!  Not ideal, but I guess that passes.";
+  } else {
+    gradeResult = "WTF man!! You got an F. Try more better next time";
+  }
+
+  return gradeResult;
 }
 
+grade(score);
 
 
 /*💪💪💪💪💪💪💪💪💪💪 Stretch 💪💪💪💪💪💪💪💪💪💪*/
