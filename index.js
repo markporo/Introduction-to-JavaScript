@@ -288,8 +288,10 @@ Using the feet function below do the following:
   3. Return number of feet
 */
 
-function feet(/*add your code here*/) {
-  /*add your code here*/
+let convertCentiMetersToFeet = 100;
+
+function feet(numInCentiM) {
+  return numInCentiM / 30.48;
 }
 
 
