@@ -17,7 +17,13 @@ Do the following:
 
    HINT: no function required
 */
+let votingAge = 300;
 
+if (votingAge >= 18) {
+  console.log("true");
+} else {
+  console.log("false");
+}
 
 
 /*
@@ -31,7 +37,13 @@ Do the following:
    HINT: no function required
 */
 
+let x = 7;
+let y = 17;
 
+if (x > 3) {
+  y = null;
+  console.log(y);
+}
 
 
 
@@ -46,6 +58,8 @@ Do the following:
    HINT: look up the Number method
 */
 
+let newString = "1999";
+console.log(Number(newString));
 
 
 
@@ -57,11 +71,14 @@ Do the following:
    2. Receive the parameters: a and b
    3. Multiply a and b and return the answer
 */
+let num1 = 300;
+let num2 = 17;
 
-function multiply(/*add your code here*/){
-    /*add your code here*/
-  }
+function multiply(a, b) {
+  return a * b;
+}
 
+multiply(num1, num2);
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -74,9 +91,13 @@ Do the following:
    3. Return the newly calculated age
 */
 
-function dogYears(/*add your code here*/){
-    /*add your code here*/
+let dogAge = 14;
+
+function dogYears(ageOfDog) {
+  return ageOfDog * 7;
 }
+
+dogYears(dogAge);
 
 
 
@@ -105,12 +126,44 @@ Use the hungryDog function and feeding requirements below to do the following:
      7 - 12 months 4% of their body weight
     
   NOTE: If done correctly, a weight of 15 lbs and age of 1 year would return 0.44999999999999996
-*/  
+*/
 
-function hungryDog(/*add your code here*/){
-    /*add your code here*/
+let weightOfDog = 15;
+let poundsOfFoodToFeedDog;
+
+function hungryDog(weightInPounds, ageValueInYears) {
+
+  if (ageValueInYears < 1) {
+    switch (true) {
+      case (ageValueInYears >= .167 && ageValueInYears <= .333):
+        poundsOfFoodToFeedDog = .1 * weightInPounds;
+        break;
+      case (ageValueInYears >= .333 && ageValueInYears <= .583):
+        poundsOfFoodToFeedDog = .05 * weightInPounds;
+        break;
+      case (ageValueInYears >= .583 && ageValueInYears <= 1):
+        poundsOfFoodToFeedDog = .05 * weightInPounds;
+        break;
+    }
+  } else {
+    switch (true) {
+      case (weightInPounds <= 5):
+        poundsOfFoodToFeedDog = .05 * weightInPounds;
+        break;
+      case (weightInPounds >= 6 && weightInPounds <= 10):
+        poundsOfFoodToFeedDog = .04 * weightInPounds;
+        break;
+      case (weightInPounds >= 11 && weightInPounds <= 15):
+        poundsOfFoodToFeedDog = .03 * weightInPounds;
+        break;
+      case (weightInPounds > 15):
+        poundsOfFoodToFeedDog = .02 * weightInPounds;
+        break;
+    }
+    return poundsOfFoodToFeedDog;
   }
-
+}
+hungryDog(weightOfDog, dogAge);
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -119,9 +172,9 @@ function hungryDog(/*add your code here*/){
 /*
 Create a global variable that randomly generates the computer's choice
 Use Math.random to determine the computers choice (Math.random gives a random number between 0 and 1)
-
+ 
 HINT: While you can complete this with only conditionals based on strings, it may help to equate choice to a number when using Math.random()
-
+ 
 Use the game function below to do the following:
   1. Receive 2 parameters the user's choice and the computer's choice
   2. Return whether the user won, lost, or tied based on these rules of the game described below - the strings returned need to match the strings below exactly.
@@ -133,12 +186,77 @@ Use the game function below to do the following:
   
   HINT: Remember that the order in which we pass in our arguments matters when it comes to parameters
 */
+const paper = "paper";
+const scissors = "scissors"
+const rock = "rock";
+let result = null;
 
-function game(user, computer){
-    /*add your code here*/
+let computerChoice = Math.ceil(Math.random() * 3);
+let userChoice = 2;
+
+function game(user, computer) {
+
+  // User's Choice
+  switch (user) {
+    case 1:
+      user = paper;
+      break;
+    case 2:
+      user = scissors;
+      break;
+    case 3:
+      user = rock;
+      break;
+  }
+
+  // Computer's Choice
+  switch (computer) {
+    case 1:
+      computer = paper;
+      break;
+    case 2:
+      computer = scissors;
+      break;
+    case 3:
+      computer = rock;
+      break;
+  }
+
+  // The Face Off and result
+  switch (true) {
+    case user === computer:
+      result = "It's a tie! " + user + " is the same as " + computer + "!";
+      break;
+    case user === scissors && computer === paper:
+      result = "You win! " + scissors + " beats " + paper + "!";
+      break;
+    case computer === scissors && user === paper:
+      result = "You lose. " + scissors + " beats " + paper + "!";
+      break;
+    case user === rock && computer === paper:
+      result = "You lose. " + paper + " beats " + rock + "!";
+      break;
+    case computer === rock && user === paper:
+      result = "You win! " + paper + " beats " + rock + "!";
+      break;
+    case computer === rock && user === scissors:
+      result = `You lose. ${rock} beats ${scissors}.`;
+      break;
+    case user === rock && computer === scissors:
+      result = `You win! ${rock} beats ${scissors}!`;
+      break;
+  }
+
+  // reassigning choices for next game
+  computerChoice = Math.ceil(Math.random() * 3);
+  userChoice = Math.ceil(Math.random() * 3);
+
+  return result;
 }
-  
-  
+
+game(userChoice, computerChoice);
+
+
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
 
@@ -151,9 +269,14 @@ Using the miles function below do the following:
   3. Return the number of miles
 */
 
-function miles(/*add your code here*/){
-    /*add your code here*/
-  }
+const myDistanceFromLAInKilometers = 3773.75;
+
+function miles(numOfKilometers) {
+  let numOfMiles = numOfKilometers / 1.609;
+  return numOfMiles;
+}
+
+miles(myDistanceFromLAInKilometers);
 
 
 
@@ -165,10 +288,12 @@ Using the feet function below do the following:
   3. Return number of feet
 */
 
-function feet(/*add your code here*/){
-    /*add your code here*/
-  }
- 
+let convertCentiMetersToFeet = 100;
+
+function feet(numInCentiM) {
+  return numInCentiM / 30.48;
+}
+
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -181,9 +306,15 @@ Using the annoyingSong function below do the following:
       "{number} bottles of soda on the wall, {number} bottles of soda, take one down pass it around {number left over} bottles of soda on the wall"
 */
 
-function annoyingSong(/*add your code here*/){
-        /*add your code here*/
+let bottles = 8;
+
+function annoyingSong(numOfSoda) {
+  while (numOfSoda > 0) {
+    console.log(`${numOfSoda} bottles of soda on the wall, ${numOfSoda} bottles of soda, take one down pass it around ${--numOfSoda} bottles of soda on the wall`);
   }
+  return "and now we open another case!!";
+}
+annoyingSong(bottles);
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀*/
@@ -193,19 +324,35 @@ function annoyingSong(/*add your code here*/){
 Using the grade function below do the following: 
   1. Receive a score out of 100 
   2. Return the corresponding letter grade following this grade scale:
-
+ 
    90-100 should return 'you got an A' 
    80-89 should return 'you got a B'
    70-79 should return 'you got a C'
    60-69 should return 'you got a D'
    below should return 'you got an F'
 */
-  
-function grade(/*Your Code here */){
-  /*Your Code here */
+let score = 98;
+
+let gradeResult;
+
+function grade(grade) {
+  if (grade >= 90) {
+    gradeResult = "You got an A!  Nice job!";
+  } else if (grade >= 80 && grade < 90) {
+    gradeResult = "You got a B!";
+  } else if (grade >= 70 && grade < 80) {
+    gradeResult = "You got a C!  Okay, average is acceptable.";
+  } else if (grade >= 60 && grade < 70) {
+    gradeResult = "You got a D!  Not ideal, but I guess that passes.";
+  } else {
+    gradeResult = "WTF man!! You got an F. Try more better next time";
   }
-  
-  
+
+  return gradeResult;
+}
+
+grade(score);
+
 
 /*💪💪💪💪💪💪💪💪💪💪 Stretch 💪💪💪💪💪💪💪💪💪💪*/
 
@@ -214,32 +361,64 @@ function grade(/*Your Code here */){
 Using the vowelCounter function below do the following:
   1. Receive a string as a parameter
   2. Count and return the number of vowels within that string.  It should handle both capitalized and uncapitalized vowels.
-
+ 
   HINT - you may need to study tomorrow's content on arrays 
   HINT - try looking up the .includes() method
 */
 
+let thisWord = "alleluia";
 
-function vowelCounter(/*add your code here*/) {
-    /*add your code here*/
+let vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+let vowelsUsed = [];
+let numOfVowels = [];
+
+
+function vowelCounter(wordWithVowels) {
+  // iterate through vowels and see if the argument passed includes any matching vowels
+  for (let i = 0; i < vowels.length; i++) {
+    if (wordWithVowels.includes(vowels[i]))
+      // if vowels are found push them to vowelsUsed array
+      vowelsUsed.push(vowels[i]);
+  }
+
+  numOfVowels = vowelsUsed.length;
+
+  // create return message for user to see
+  let returnMessage = "There is/are " + numOfVowels + " different vowel(s) in this word.  This/These is/are the vowel(s) used in that word " + vowelsUsed + ".";
+
+  // clear out the array holding vowels of current word for the next word to be used
+  clearArray(numOfVowels);
+  clearArray(vowelsUsed);
+
+  return returnMessage;
 }
+
+// outside function used to attempt to clear out the numOfVowels array holding vowels
+function clearArray(array) {
+  while (array.length) {
+    array.pop();
+  }
+}
+
+// initiate vowelCounter function passing the thisWord variable
+vowelCounter(thisWord);
 
 
 
 /*🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑*/
-function foo(){
-    //console.log('its working');
-    return 'bar';
+function foo() {
+  //console.log('its working');
+  return 'bar';
 }
 /*🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Don't touch the code after this line! 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑*/
-export default{
-    foo,
-    multiply,
-    dogYears,
-    hungryDog,
-    game,
-    miles,
-    feet,
-    annoyingSong,
-    grade
+export default {
+  foo,
+  multiply,
+  dogYears,
+  hungryDog,
+  game,
+  miles,
+  feet,
+  annoyingSong,
+  grade
 }
